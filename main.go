@@ -5,11 +5,12 @@ import (
 	"log"
 	"github.com/gorilla/mux"
 	"net/http"
+	"os"
 	jwtmiddleware "github.com/auth0/go-jwt-middleware"
     jwt "github.com/form3tech-oss/jwt-go"
+	"github.com/joho/godotenv"
 
 )
-
 func main() {
 	fmt.Println("started-service")
 	jwtMiddleware := jwtmiddleware.New(jwtmiddleware.Options{
@@ -29,4 +30,16 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
+func goDotEnvVariable(key string) string {
+
+	// load .env file
+	err := godotenv.Load("aws-go.env")
+  
+	if err != nil {
+	  log.Fatalf("Error loading .env file")
+	}
+  
+	return os.Getenv(key)
+  }
+  
 

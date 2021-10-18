@@ -13,10 +13,10 @@ import(
 func init_user_db() {
 	// AWS session
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -61,12 +61,10 @@ func init_user_db() {
 func init_post_db() {
 	// AWS session
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
-		// Endpoint: aws.String("http://3.87.3.254"),
-		// EndPoint: aws.String("https://dynamodb.us-east-1.amazonaws.com"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -114,10 +112,10 @@ func init_post_db() {
 }
 func uploadToDB(p Post) {
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -148,10 +146,10 @@ func uploadToDB(p Post) {
 }
 func deleteFromDB(user string, url string, curTable string) {
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -185,10 +183,10 @@ func deleteFromDB(user string, url string, curTable string) {
 
 func readApostFromDB(user string, url string, curTable string) (*Post, error){
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -226,10 +224,10 @@ func readApostFromDB(user string, url string, curTable string) (*Post, error){
 
 func readFromDB(user string, curTable string) ([]Post, error){
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -299,10 +297,10 @@ func queryHandler(page *dynamodb.QueryOutput, lastPage bool) bool {
 }
 func updateFromDB(p Post) (*Post, error){
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -359,10 +357,10 @@ func updateFromDB(p Post) (*Post, error){
 
 func saveUserToDB(uname string, upass string) error{
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
@@ -394,10 +392,10 @@ func saveUserToDB(uname string, upass string) error{
 }
 func readUserFromDB(uname string, curTable string) (string, error){
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))

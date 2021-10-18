@@ -11,18 +11,17 @@ import(
 )
 var filepa string
 var MyBucket string
-
 func UploadImage(f multipart.File, objectid string, header *multipart.FileHeader) (string,error){
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
     uploader := s3manager.NewUploader(sess)
-    MyBucket = "cmpe281project1"
+    MyBucket = goDotEnvVariable("BUCKET_NAME")
     file := f
     filename := objectid
     //upload to the s3 bucket
@@ -35,22 +34,22 @@ func UploadImage(f multipart.File, objectid string, header *multipart.FileHeader
     if err != nil {
 		return "",err
     }
-    filepa = "https://" + MyBucket + "." + "s3-" + "us-east-1" + ".amazonaws.com/" + filename
+    filepa = "https://" + MyBucket + "." + "s3-" + goDotEnvVariable("AWS_REGION") + ".amazonaws.com/" + filename
     fmt.Println("file saved to S3: %v", filepa)
     return result.Location, nil
 }
 
 func DeleteImage(objectid string) error{
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:   aws.String("us-east-1"),
+		Region:   aws.String(goDotEnvVariable("AWS_REGION")),
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAZAZDZ6YVHU4TTHLL",
-			"Z21ebf95ZIYGkyp43WpCcAvYiPYApVaBpsimpk7i",
+			goDotEnvVariable("AWS_ACCESS_KEY_ID"),
+			goDotEnvVariable("AWS_SECRET_ACCESS_KEY"),
 			"", // a token will be created when the session it's used.
 		  ),
 	}))
 	svc := s3.New(sess)
-	MyBucket = "cmpe281project1"
+	MyBucket = goDotEnvVariable("BUCKET_NAME")
 	input := &s3.DeleteObjectInput{
 		Bucket: aws.String(MyBucket),
 		Key:    aws.String(objectid),
