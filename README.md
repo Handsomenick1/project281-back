@@ -2,6 +2,7 @@
 # project281-back
 
 The diagram:
+![Image of diagram]
 (https://drive.google.com/file/d/1FpVrPpg5OCrLdefRhtWpieU0JSBa4Yj9/view?usp=sharing)
 
 The Demo video:
