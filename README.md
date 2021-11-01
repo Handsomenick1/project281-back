@@ -2,7 +2,7 @@
 # project281-back
 
 The diagram:
-![Image of Diagram](https://drive.google.com/file/d/1FpVrPpg5OCrLdefRhtWpieU0JSBa4Yj9/view?usp=sharing)
+![Image of Diagram](https://kami.app/9rK-K9R-zyF)
 
 The Demo video:
 https://youtu.be/iFJtLVDj8q0
